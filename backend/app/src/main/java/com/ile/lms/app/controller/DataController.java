@@ -19,9 +19,19 @@ public class DataController {
     @Autowired
     private StudentService studentService;
 
+    // @GetMapping("students")
+    // public ResponseEntity<List<Student>> getStudents() {
+    //     return new ResponseEntity<>(studentService.getStudents(), HttpStatus.OK);
+    // }
+
     @GetMapping("students")
-    public ResponseEntity<List<Student>> getStudents() {
-        return new ResponseEntity<>(studentService.getStudents(), HttpStatus.OK);
+    public ResponseEntity<List<Student>> getStudentsByClassId(@RequestParam String classId) {
+        List<Student> students = studentService.getStudentsByClassId(classId);
+        if (students == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(students, HttpStatus.OK);
     }
+    
     
 }
