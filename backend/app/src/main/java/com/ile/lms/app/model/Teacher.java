@@ -8,11 +8,15 @@ import org.springframework.stereotype.Component;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @Component
+@AllArgsConstructor
+@NoArgsConstructor
 public class Teacher {
     @Id String teacherId;
     String cidCardNum;
@@ -23,6 +27,6 @@ public class Teacher {
     String placeOfBirth;
     String education;
     String address;
-    @OneToMany
+    @OneToMany(mappedBy = "teacher")
     List<Classroom> teachingClass;
 }
