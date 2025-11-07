@@ -30,6 +30,7 @@ public class DataController {
         if (students == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        System.out.println("Length of studs " + students.size());
         return new ResponseEntity<>(students, HttpStatus.OK);
     }
     

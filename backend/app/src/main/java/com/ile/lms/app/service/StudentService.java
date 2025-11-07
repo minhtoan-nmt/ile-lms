@@ -25,12 +25,7 @@ public class StudentService {
 
     public List<Student> getStudentsByClassId(String classId) {
         // TODO Auto-generated method stub
-        Optional<Classroom> c = classroomRepo.findById(classId);
-        System.out.println(c.isPresent());
-        if (!c.isPresent()) {
-            return null;
-        }
-        return studentRepo.findByClassroom(c.get());
+        return studentRepo.findByClassroomId(classId);
     }
 
 }
