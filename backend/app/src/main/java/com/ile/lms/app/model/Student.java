@@ -32,4 +32,7 @@ public class Student {
     @JoinColumn(name = "class_id")
     @JsonBackReference
     private Classroom classroom;
+    public String getClassName() {
+        return classroom != null ? classroom.getClassName() : null;
+    }
 }
