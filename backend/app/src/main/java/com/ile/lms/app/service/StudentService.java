@@ -23,4 +23,9 @@ public class StudentService {
         return studentRepo.findByClassroomId(classId);
     }
 
+    public Student getStudentById(String studentId) {
+        // TODO Auto-generated method stub
+        return studentRepo.findById(studentId).orElse(null);
+    }
+
 }

@@ -11,10 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
+@RequestMapping("/api")
 public class DataController {
     @Autowired
     private StudentService studentService;
@@ -30,10 +32,16 @@ public class DataController {
         if (students == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        System.out.println("Length of studs " + students.size());
-        // System.out.println();
         return new ResponseEntity<>(students, HttpStatus.OK);
     }
     
+    @GetMapping("student")
+    public ResponseEntity<Student> getStudentById(@RequestParam String studentId) {
+        Student s = studentService.getStudentById(studentId);
+        if (s == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Student>(s, HttpStatus.OK);
+    }
     
 }
