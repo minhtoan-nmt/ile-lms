@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
@@ -32,5 +33,8 @@ public class Classroom {
     private List<Student> studentList;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "teacher_id")
+    @JsonBackReference
     private Teacher teacher;
+    @OneToMany(mappedBy = "classroom")
+    private List<Session> sessions;
 }

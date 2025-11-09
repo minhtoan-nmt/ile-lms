@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -28,5 +30,6 @@ public class Teacher {
     String education;
     String address;
     @OneToMany(mappedBy = "teacher")
+    @JsonManagedReference
     List<Classroom> teachingClass;
 }
