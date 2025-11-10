@@ -2,7 +2,9 @@ package com.ile.lms.app.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ile.lms.app.model.Session;
 import com.ile.lms.app.model.Student;
+import com.ile.lms.app.service.ClassService;
 import com.ile.lms.app.service.StudentService;
 
 import java.util.List;
@@ -13,6 +15,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @RestController
@@ -20,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class DataController {
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private ClassService classService;
 
     // @GetMapping("students")
     // public ResponseEntity<List<Student>> getStudents() {
@@ -43,5 +50,19 @@ public class DataController {
         }
         return new ResponseEntity<Student>(s, HttpStatus.OK);
     }
+
+    @GetMapping("sessions")
+    public ResponseEntity<List<Session>> getAllSession(@RequestParam String classId) {
+        return new ResponseEntity<List<Session>>(classService.getAllSession(classId), HttpStatus.OK);
+    }
+    
+
+    @PostMapping("session")
+    public ResponseEntity<Session> addSession(@RequestBody Session newSession) {
+        //TODO: process POST request
+        classService.addNewSession(newSession);
+        return new ResponseEntity<Session>(newSession, HttpStatus.CREATED);
+    }
+    
     
 }
