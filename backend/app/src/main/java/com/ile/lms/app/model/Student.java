@@ -5,7 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -30,13 +31,11 @@ public class Student {
     private String sex;
     private String phoneNum;
     private String engName;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "class_id")
-    @JsonBackReference
+    @JsonManagedReference
     private Classroom classroom;
     @ManyToMany
+    @JsonIgnore
     private List<Session> participatedSessions;
-    public String getClassName() {
-        return classroom != null ? classroom.getClassName() : null;
-    }
 }

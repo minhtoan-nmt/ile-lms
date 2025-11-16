@@ -29,12 +29,13 @@ public class Classroom {
     private String level;
     private String textbookName;
     @OneToMany(mappedBy = "classroom")
-    @JsonManagedReference
-    private List<Student> studentList;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "teacher_id")
     @JsonBackReference
+    private List<Student> studentList;
+    @ManyToOne
+    @JoinColumn(name = "teacher_id")
+    @JsonManagedReference
     private Teacher teacher;
     @OneToMany(mappedBy = "classroom")
+    @JsonBackReference
     private List<Session> sessions;
 }
