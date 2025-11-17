@@ -22,7 +22,7 @@ public class ClassService {
     @Autowired
     private ClassroomRepo classroomRepo;
 
-    public Session addNewSession(SessionRequestObject newSession) {
+    public Session addOrUpdateSession(SessionRequestObject newSession) {
         // TODO Auto-generated method stub
         
         Session saveSession;

@@ -61,7 +61,7 @@ public class DataController {
     @PostMapping("session")
     public ResponseEntity<Session> addSession(@RequestBody SessionRequestObject newSession) {
         //TODO: process POST request
-        return new ResponseEntity<Session>(classService.addNewSession(newSession), HttpStatus.CREATED);
+        return new ResponseEntity<Session>(classService.addOrUpdateSession(newSession), HttpStatus.CREATED);
     }
     
     
