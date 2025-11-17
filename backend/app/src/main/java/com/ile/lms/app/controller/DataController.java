@@ -4,7 +4,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ile.lms.app.model.Session;
 import com.ile.lms.app.model.Student;
+import com.ile.lms.app.model.StudentPenalty;
 import com.ile.lms.app.model.dto.SessionRequestObject;
+import com.ile.lms.app.model.dto.StudentPenaltyRequestObject;
 import com.ile.lms.app.service.ClassService;
 import com.ile.lms.app.service.StudentService;
 
@@ -64,5 +66,10 @@ public class DataController {
         return new ResponseEntity<Session>(classService.addOrUpdateSession(newSession), HttpStatus.CREATED);
     }
     
+    @PostMapping("student_penalty")
+    public ResponseEntity<StudentPenalty> postMethodName(@RequestBody StudentPenaltyRequestObject sObject) {
+        //TODO: process POST request
+        return new ResponseEntity<StudentPenalty>(studentService.addOrUpdatePenalty(sObject), HttpStatus.CREATED);
+    }
     
 }

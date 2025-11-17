@@ -49,9 +49,7 @@ public class ClassService {
             student.getParticipatedSessions().add(saveSession); 
         }
         saveSession.setClassroom(classroomRepo.findById(newSession.getClassroom()).orElse(null));
-        sessionRepo.save(saveSession);
-        
-        return saveSession;
+        return sessionRepo.save(saveSession);
     }
 
     public List<Session> getAllSession(String classId) {
