@@ -24,12 +24,21 @@ public class ClassService {
 
     public Session addNewSession(SessionRequestObject newSession) {
         // TODO Auto-generated method stub
-        Session saveSession = new Session();
+        
+        Session saveSession;
         int newSessionId = newSession.getSessionId();
+        if (sessionRepo.existsById(newSessionId)) {
+            saveSession = sessionRepo.findById(newSessionId).orElseThrow();
+            for (Student student : saveSession.getStudentsParticipated()) {
+                student.getParticipatedSessions().remove(saveSession);
+            }
+            saveSession.getStudentsParticipated().clear();
+        } else {
+            saveSession = new Session();
+        }
         if (newSessionId != 0) {
             saveSession.setSessionId(newSessionId);
         }
-        System.out.println("The session id is : " + newSession.getSessionId());
         saveSession.setContent(newSession.getContent());
         saveSession.setDate(newSession.getDate());
         saveSession.setStudentsParticipated(new ArrayList<>(newSession.getStudentsParticipated().size()));
